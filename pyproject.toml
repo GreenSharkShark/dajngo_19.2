@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "19-2"
+version = "0.1.0"
+description = ""
+authors = ["Zhorik Zeniuk <ZhorikZeniuk@gmail.ru>"]
+readme = "README.md"
+packages = [{include = "19"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
