@@ -1,0 +1,64 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Мясо",
+      "category_description": "Мясные продукты",
+      "created_at": "2023-07-12T15:59:31.183Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "Молочные продукты",
+      "category_description": "Молочные продукты",
+      "created_at": "2023-07-12T16:00:23.334Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Салатики",
+      "category_description": "Салатики",
+      "created_at": "2023-07-14T09:56:38.366Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "category_name": "Мучные изделия",
+      "category_description": "Изделия из мукуи",
+      "created_at": "2023-07-14T09:57:20.491Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Сосисочки",
+      "description": "Сосисочки из мяса",
+      "img": "",
+      "category": 2,
+      "price": 10,
+      "date_of_creation": "2023-07-12T15:59:55.388Z",
+      "last_change_date": "2023-07-12T15:59:55.388Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Молочко",
+      "description": "Молочко молочное",
+      "img": "",
+      "category": 3,
+      "price": 15,
+      "date_of_creation": "2023-07-12T16:04:03.715Z",
+      "last_change_date": "2023-07-12T16:04:03.715Z"
+    }
+  }
+]
