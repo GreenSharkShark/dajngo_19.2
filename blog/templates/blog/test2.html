@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{#шаблон для проверки работает ли фильтр опубликованных статей#}
+{#для просмотра http://127.0.0.1:8000/blog/publ #}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for object in object_list %}
+    <h1>{{ object.title }}</h1>
+    <h1>{{ object.body }}</h1>
+{% endfor %}
+</body>
+</html>

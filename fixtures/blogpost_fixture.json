@@ -1,0 +1,26 @@
+[
+  {
+    "model": "blog.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Заголовок статьи 1",
+      "slug": "slug-article-1",
+      "body": "Содержимое статьи 1.",
+      "date_of_creation": "2023-07-20T12:00:00Z",
+      "is_published": true,
+      "views_count": 100
+    }
+  },
+  {
+    "model": "blog.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "Заголовок статьи 2",
+      "slug": "slug-article-2",
+      "body": "Содержимое статьи 2.",
+      "date_of_creation": "2023-07-21T10:30:00Z",
+      "is_published": false,
+      "views_count": 50
+    }
+  }
+]
