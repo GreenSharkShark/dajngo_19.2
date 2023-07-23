@@ -1,5 +1,5 @@
-from django.urls import reverse
-from django.views.generic import DetailView, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from pytils.translit import slugify
 
 from blog.models import BlogPost
@@ -28,3 +28,20 @@ class BlogPostListView(ListView):
         queryset = super().get_queryset()
         queryset = queryset.filter(is_published=True)
         return queryset
+
+
+class BlogPostView(CreateView):
+    model = BlogPost
+    fields = ('title', 'body', 'preview',)
+    success_url = reverse_lazy('blog:test')
+
+
+class BlogPostUpdateView(UpdateView):
+    model = BlogPost
+    fields = ('title', 'body', 'preview',)
+    success_url = reverse_lazy('blog:test')
+
+
+class BlogPostDeleteView(DeleteView):
+    model = BlogPost
+    success_url = reverse_lazy('blog:test')
