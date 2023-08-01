@@ -1,0 +1,80 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 44,
+    "fields": {
+      "name": "Смартфон",
+      "description": "Мобильный телефон с функциями смартфона",
+      "img": "phone.jpeg",
+      "category": 1,
+      "price": 500,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-08-01T14:57:37.868Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 45,
+    "fields": {
+      "name": "Футболка",
+      "description": "Мужская футболка из хлопка",
+      "img": "",
+      "category": 2,
+      "price": 20,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-08-01T15:26:08.749Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 46,
+    "fields": {
+      "name": "Помада",
+      "description": "Помада для губ с матовым финишем",
+      "img": "product_img/lipstick.jpg",
+      "category": 3,
+      "price": 15,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-08-01T15:46:31.509Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 47,
+    "fields": {
+      "name": "Газонокосилка",
+      "description": "Электрическая газонокосилка для ухода за газоном",
+      "img": "product_img/lawn_mower_aAodx1L.jpg",
+      "category": 4,
+      "price": 150,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-08-01T15:48:56.659Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 48,
+    "fields": {
+      "name": "Фитнес гантель",
+      "description": "Гантель для тренировок с регулируемым весом",
+      "img": "dumbbells.png",
+      "category": 5,
+      "price": 30,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-07-16T15:07:34.864Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 49,
+    "fields": {
+      "name": "Книга",
+      "description": "Исторический роман о приключениях",
+      "img": "book.png",
+      "category": 6,
+      "price": 10,
+      "date_of_creation": "2023-07-16T15:07:34.864Z",
+      "last_change_date": "2023-07-16T15:07:34.864Z"
+    }
+  }
+]
