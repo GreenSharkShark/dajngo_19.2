@@ -1,6 +1,5 @@
 from django import forms
-from catalog.models import Product
-
+from catalog.models import Product, Version
 
 forbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
@@ -17,7 +16,7 @@ class ProductForm(forms.ModelForm):
             if forbidden_word in cleaned_data.lower():
                 raise forms.ValidationError(f'В названии продукта нельзя использовать слово: {cleaned_data}')
 
-            return cleaned_data
+        return cleaned_data
 
     def clean_description(self):
         cleaned_data = self.cleaned_data['description']
@@ -26,4 +25,10 @@ class ProductForm(forms.ModelForm):
             if forbidden_word in cleaned_data.lower():
                 raise forms.ValidationError(f'В описании продукта нельзя использовать слово: {cleaned_data}')
 
-            return cleaned_data
+        return cleaned_data
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'

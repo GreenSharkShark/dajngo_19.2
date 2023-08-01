@@ -1,0 +1,34 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+    {% load my_tags %}
+    <div class="col-lg-10">
+        <div class="content">
+            <h1 class="card-title text-center mt-5">Главная</h1>
+            <h3 class="card-title text-center mt-1">Вы находитесь на сайте, предназначенном для продажи товаров</h3>
+            <div class="container mt-5">
+                <div class="row justify-content-center m-2">
+                    {% for object in object_list %}
+                        <div class="col-4 mt-2">
+                            <div class="card text-center">
+                                <img style="height: 300px" src="{% mediapath object.img %}"
+                                     alt="{{ object.description }}">
+                                <div class=" card-header">
+                                    {{ object.name }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Цена {{ object.price }}р</h5>
+                                    <p class="card-text">{{ object.description }}</p>
+                                    <div class="card-footer d-flex justify-content-center mb-3">
+                                        <a href="#" class="btn btn-primary">Купить</a>
+                                        <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-infot">Редактировать</a>
+                                        <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
