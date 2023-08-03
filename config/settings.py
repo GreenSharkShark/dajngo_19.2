@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'catalog',
     'blog',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -86,14 +87,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'products',
-        'USER': 'ZhorikZeniuk',
-<<<<<<< HEAD
+        'USER': 'postgres',
         'PASSWORD': DB_PASS['pass'],
-=======
-        'PASSWORD': db_pass,
->>>>>>> develop
         'HOST': '',
-        'PORT': 5433,
+        'PORT': 5432,
     }
 }
 
