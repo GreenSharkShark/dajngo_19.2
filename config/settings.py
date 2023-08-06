@@ -20,7 +20,8 @@ with open('prvt.json') as file:
     prvt = json.load(file)
     db_pass = prvt['pass']
     SECRET_KEY = prvt['SECRET_KEY']
-
+    gmail = prvt['gmail']
+    gmail_pass = prvt['gmail_pass']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -32,6 +33,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# настройки для отправки писем через gmail
+EMAIl_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = gmail
+EMAIL_HOST_PASSWORD = gmail_pass
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = ['zhorikzeniuk@gmail.comm']
+
 
 # Application definition
 
@@ -42,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
 
     'catalog',
     'blog',
@@ -143,3 +160,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+SITE_ID = 1
