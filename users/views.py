@@ -1,11 +1,12 @@
 from random import randint
 
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import CreateView, UpdateView, TemplateView
+from django.views.generic import CreateView, UpdateView, TemplateView, FormView
 
-from users.forms import UserRegisterForm, UserProfileForm
+from users.forms import UserRegisterForm, UserProfileForm, UserResetPasswordForm
 from users.models import User
 from django.core.mail import send_mail
 
@@ -52,6 +53,34 @@ class VerifyEmailView(View):
             return HttpResponseRedirect(reverse('users:email_confirmed'))
         except User.DoesNotExist:
             return HttpResponseRedirect(reverse('users:email_confirmation_failed'))
+
+
+class ResetPasswordView(FormView):
+    """
+    Класс для сброса пароля на автоматически сгенерированный
+    """
+    model = User
+    template_name = 'users/reset_password.html'
+    form_class = UserResetPasswordForm
+    success_url = reverse_lazy('users:reset_password_done')
+
+    def form_valid(self, form):
+        email = form.cleaned_data['username']
+        try:
+            user = User.objects.get(email=email)
+            new_password = User.objects.make_random_password(length=12)
+            user.set_password(new_password)
+            user.save()
+            send_mail(
+                'Сброс пароля',
+                f'Ваш новый пароль для входа: {new_password}',
+                'test',
+                [user.email],
+                fail_silently=False
+            )
+        except User.DoesNotExist:
+            return redirect('users:reset_password_failed')
+        return super().form_valid(form)
 
 
 class EmailConfirmationView(TemplateView):

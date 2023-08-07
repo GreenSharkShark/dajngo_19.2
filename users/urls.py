@@ -11,8 +11,17 @@ urlpatterns = [
     path('', LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('email-confirmation/', EmailConfirmationView.as_view(), name='email_confirmation'),
+    path('email-confirmation/', TemplateView.as_view(template_name='users/email_confirmation_sent.html'),
+         name='email_confirmation'),
     path('verify/<int:rand_key>/', VerifyEmailView.as_view(), name='verify_email'),
-    path('email-confirmed', EmailConfirmedView.as_view(), name='email_confirmed'),
-    path('email-confirmation-failed', EmailConfirmationFailedView.as_view(), name='email_confirmation_failed'),
+    path('email-confirmed', TemplateView.as_view(template_name='users/email_confirmed.html'), name='email_confirmed'),
+    path('email-confirmation-failed', TemplateView.as_view(template_name='users/email_confirmation_failed.html'),
+         name='email_confirmation_failed'),
+    path('reset-password/', ResetPasswordView.as_view(), name='reset_password'),
+    path('reset-password-done/', TemplateView.as_view(template_name='users/reset_password_done.html'),
+         name='reset_password_done'),
+    path('reset-password-failed/', TemplateView.as_view(template_name='users/reset_password_failed.html'),
+         name='reset_password_failed')
 ]
+
+
