@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 
 NULLABLE = {'blank': True, 'null': True}
@@ -6,7 +7,7 @@ NULLABLE = {'blank': True, 'null': True}
 
 class Category(models.Model):
     """
-    наименование,
+    Наименование,
     описание
     """
     category_name = models.CharField(max_length=100, verbose_name='Категория')
@@ -14,7 +15,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.id} {self.category_name} '
+        return f'{self.pk} {self.category_name} '
 
     class Meta:
         verbose_name = 'категория'
@@ -23,7 +24,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     """
-    наименование,
+    Наименование,
     описание,
     изображение (превью),
     категория,
@@ -38,9 +39,10 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена')
     date_of_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     last_change_date = models.DateTimeField(auto_now=True, verbose_name='Последнее изменение')
+    creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, **NULLABLE)
 
     def __str__(self):
-        return f'{self.id} {self.name}, Категория: {self.category}, Цена: {self.price}'
+        return f'{self.pk} {self.name}, Категория: {self.category}, Цена: {self.price}'
 
     class Meta:
         verbose_name = 'продукт'
@@ -49,7 +51,7 @@ class Product(models.Model):
 
 class Version(models.Model):
     """
-    продукт,
+    Продукт,
     номер версии,
     название версии,
     признак текущей версии.
