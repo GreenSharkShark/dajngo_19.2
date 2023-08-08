@@ -1,67 +1,75 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
-        <div class="col-lg-10">
-            <div class="row justify-content-center mt-5">
+<div class="col-lg-10">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <h2 class="text-center mb-4">Каталог</h2>
+            <a href="{% url 'catalog:product_create' %}" class="btn btn-primary m-1">Создать товар</a>
+            <div class="row">
                 <div class="col-6">
-                    <h2 class="text-center mb-4">Каталог</h2>
-                    <a href= "{% url 'catalog:product_create' %}" class="btn btn-primary m-1">Создать товар</a>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="card mb-4">
-                                <img src="test_img.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Заголовок карточки 1</h5>
-                                    <p class="card-text">Это содержимое карточки 1.</p>
-                                    <div class="d-flex justify-content-start">
-                                        <button class="btn btn-primary m-1">View</button>
-                                        <button class="btn btn-secondary m-1">Edit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card mb-4">
-                                <img src="" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Заголовок карточки 2</h5>
-                                    <p class="card-text">Это содержимое карточки 2.</p>
-                                    <div class="d-flex justify-content-start">
-                                        <button class="btn btn-primary m-1">View</button>
-                                        <button class="btn btn-secondary m-1">Edit</button>
-                                    </div>
-                                </div>
+                    <div class="card mb-4">
+                        <img src="test_img.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Заголовок карточки 1</h5>
+                            <p class="card-text">Это содержимое карточки 1.</p>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary m-1">View</button>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-secondary m-1">Edit</button>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="card">
-                                <img src="test_img.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Заголовок карточки 3</h5>
-                                    <p class="card-text">Это содержимое карточки 3.</p>
-                                    <div class="d-flex justify-content-start">
-                                        <button class="btn btn-primary m-1">View</button>
-                                        <button class="btn btn-secondary m-1">Edit</button>
-                                    </div>
-                                </div>
+                </div>
+                <div class="col-6">
+                    <div class="card mb-4">
+                        <img src="" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Заголовок карточки 2</h5>
+                            <p class="card-text">Это содержимое карточки 2.</p>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary m-1">View</button>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-secondary m-1">Edit</button>
+                                {% endif %}
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="card">
-                                <img src="test_img.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Заголовок карточки 4</h5>
-                                    <p class="card-text">Это содержимое карточки 4.</p>
-                                    <div class="d-flex justify-content-start">
-                                        <button class="btn btn-primary m-1">View</button>
-                                        <button class="btn btn-secondary m-1">Edit</button>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <img src="test_img.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Заголовок карточки 3</h5>
+                            <p class="card-text">Это содержимое карточки 3.</p>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary m-1">View</button>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-secondary m-1">Edit</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <img src="test_img.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Заголовок карточки 4</h5>
+                            <p class="card-text">Это содержимое карточки 4.</p>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary m-1">View</button>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-secondary m-1">Edit</button>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 {% endblock %}

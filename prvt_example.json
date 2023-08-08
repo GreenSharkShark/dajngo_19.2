@@ -1,0 +1,7 @@
+{
+  "pass": "your_db_pass",
+  "superuser_pass": "your_superuser_pass",
+  "SECRET_KEY": "your_django_secret_key",
+  "gmail": "your_mail_to_mail_send_function",
+  "gmail_pass": "your_gmail_pass"
+}
