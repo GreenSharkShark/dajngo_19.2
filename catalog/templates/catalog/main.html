@@ -20,8 +20,10 @@
                                     <p class="card-text">{{ object.description }}</p>
                                     <div class="card-footer d-flex justify-content-center mb-3">
                                         <a href="#" class="btn btn-primary">Купить</a>
+                                        {% if user.is_authenticated %}
                                         <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-infot">Редактировать</a>
                                         <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
