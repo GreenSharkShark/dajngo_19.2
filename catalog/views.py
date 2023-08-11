@@ -1,9 +1,20 @@
 from django.forms import inlineformset_factory
+from django.http import HttpResponseForbidden
 from django.views.generic import ListView, TemplateView, CreateView, DeleteView, UpdateView
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class DispatchMixin:
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.creator != self.request.user:
+            return HttpResponseForbidden(
+                "У вас нет прав на редактирование или удаление продукта, создателем которого вы не являетесь."
+            )
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ProductsListView(ListView):
@@ -15,6 +26,11 @@ class ProductsListView(ListView):
         context = super().get_context_data(**kwargs)
         context.update(self.my_context)
         return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        return queryset
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -30,7 +46,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, DispatchMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
@@ -55,7 +71,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DispatchMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:main')
 
