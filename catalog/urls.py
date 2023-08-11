@@ -11,5 +11,6 @@ urlpatterns = [
     path('catalog/', CatalogView.as_view(), name='catalog'),
     path('catalog/product-create', ProductCreateView.as_view(), name='product_create'),
     path('product-delete/<int:pk>/', ProductDeleteView.as_view(), name='product_delete'),
-    path('product-update/<int:pk>/', ProductUpdateView.as_view(), name='product_update')
+    path('product-update/<int:pk>/', ProductUpdateView.as_view(), name='product_update'),
+    path('product-update-prohibited/', TemplateView.as_view(template_name='product_update_prohibited.html'), name='product_update_prohibited'),
 ]

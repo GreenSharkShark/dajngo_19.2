@@ -40,6 +40,7 @@ class Product(models.Model):
     date_of_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     last_change_date = models.DateTimeField(auto_now=True, verbose_name='Последнее изменение')
     creator = models.ForeignKey(User, on_delete=models.DO_NOTHING, **NULLABLE)
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовать')
 
     def __str__(self):
         return f'{self.pk} {self.name}, Категория: {self.category}, Цена: {self.price}'
