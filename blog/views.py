@@ -27,7 +27,7 @@ class BlogPostListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(is_published=True)
-        return queryset
+        return querysetf
 
 
 class BlogPostView(CreateView):

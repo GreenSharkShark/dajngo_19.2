@@ -1,9 +1,9 @@
 from django.forms import inlineformset_factory
 from django.http import HttpResponseForbidden
-from django.views.generic import ListView, TemplateView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, TemplateView, CreateView, DeleteView, UpdateView, DetailView
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -33,11 +33,17 @@ class ProductsListView(ListView):
         return queryset
 
 
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'catalog/product_detail_view.html'
+    success_url = reverse_lazy('catalog:main')
+
+
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     template_name = 'catalog/product_form.html'
     form_class = ProductForm
-    success_url = reverse_lazy('catalog:catalog')
+    success_url = reverse_lazy('catalog:product_detail')
 
     def form_valid(self, form):
         product = form.save(commit=False)
@@ -50,7 +56,6 @@ class ProductUpdateView(LoginRequiredMixin, DispatchMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'catalog/product_form.html'
-    success_url = reverse_lazy('catalog:main')
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -70,10 +75,13 @@ class ProductUpdateView(LoginRequiredMixin, DispatchMixin, UpdateView):
 
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
+
 
 class ProductDeleteView(LoginRequiredMixin, DispatchMixin, DeleteView):
     model = Product
-    success_url = reverse_lazy('catalog:main')
+    success_url = reverse_lazy('catalog:product_detail')
 
 
 class CatalogView(TemplateView):
