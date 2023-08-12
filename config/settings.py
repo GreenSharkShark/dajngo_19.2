@@ -9,30 +9,24 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import json
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-with open('prvt.json') as file:
-    DB_PASS = json.load(file)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open('prvt.json') as file:
-    prvt = json.load(file)
-    db_pass = prvt['pass']
-    SECRET_KEY = prvt['SECRET_KEY']
-    gmail = prvt['gmail']
-    gmail_pass = prvt['gmail_pass']
+load_dotenv(BASE_DIR / '.env')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 
@@ -43,8 +37,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = gmail
-EMAIL_HOST_PASSWORD = gmail_pass
+EMAIL_HOST_USER = os.getenv('gmail')
+EMAIL_HOST_PASSWORD = os.getenv('gmail_pass')
 
 EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
@@ -107,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'products',
         'USER': 'postgres',
-        'PASSWORD': db_pass,
+        'PASSWORD': os.getenv('db_pass'),
         'HOST': '',
         'PORT': 5432,
     }
@@ -166,3 +160,13 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 SITE_ID = 1
+
+CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
+
+if CACHE_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379",
+        }
+    }
