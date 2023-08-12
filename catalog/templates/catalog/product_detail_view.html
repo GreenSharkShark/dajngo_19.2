@@ -1,93 +1,32 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
-        <div class="col-lg-10">
-            <div class="content">
-                <h1 class="card-title text-center mt-5">Главная</h1>
-                <h3 class="card-title text-center mt-1">Вы находитесь на сайте, предназначенном для продажи товаров</h3>
-                <div class="container mt-5">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 1
+    {% load my_tags %}
+    <div class="col-lg-10">
+        <div class="content">
+            <div class="container mt-5">
+                <div class="row justify-content-center m-2">
+                        <div class="col-4 mt-2">
+                            <div class="card text-center">
+                                <img style="height: 300px" src="{% mediapath object.img %}"
+                                     alt="{{ object.description }}">
+                                <div class=" card-header">
+                                    {{ object.name }}
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">100$</h5>
-                                    <p class="card-text">10 users included, 2GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
+                                    <h5 class="card-title">Цена {{ object.price }}р</h5>
+                                    <p class="card-text">{{ object.description }}</p>
+                                    <div class="card-footer d-flex justify-content-center mb-3">
+                                        <a href="#" class="btn btn-primary">Купить</a>
+                                        {% if user.is_authenticated  and object.creator == user %}
+                                        <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-info">Редактировать</a>
+                                        <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 2
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">200$</h5>
-                                    <p class="card-text">20 users included, 5GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 3
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">300$</h5>
-                                    <p class="card-text">30 users included, 10GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 4
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">400$</h5>
-                                    <p class="card-text">40 users included, 15GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 5
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">500$</h5>
-                                    <p class="card-text">50 users included, 20GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card text-center mb-4">
-                                <div class="card-header">
-                                    Товар 6
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">600$</h5>
-                                    <p class="card-text">60 users included, 25GB of storage,</p>
-                                    <p class="card-text">Email support, Help center access</p>
-                                    <a href="#" class="btn btn-primary">Купить</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
